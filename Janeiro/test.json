@@ -539,7 +539,7 @@
           "$invalid": false,
           "settings": {
             "function": "run",
-            "source": "function run(contentTypes, userChannel, channelTextTags) {\n\tcontentTypes = JSON.parse(contentTypes);\n\tchannelTextTags = JSON.parse(channelTextTags);\n\tconst text = `Oii!${channelTextTags.breakline}Eu sou a ${channelTextTags.open}Kora${channelTextTags.close}, assistente virtual da ${channelTextTags.open}Coca-Cola Brasil${channelTextTags.close}. 😊`;\n\tconst messageContent = {\n\t\t\"title\": \"\",\n\t\ttext,\n\t\t\"type\": \"image/jpeg\",\n\t\t\"uri\": \"https://storage.googleapis.com/kora-nlp-prod.appspot.com/koraavatar.jpeg\",\n\t\t\"aspectRatio\": \"1:1\"\n\t};\n\tif (userChannel == \"other\") {\n\t\treturn messageContent;\n\t}\n\treturn text;\n}",
+            "source": "function run(contentTypes, userChannel, channelTextTags) {\n\tcontentTypes = JSON.parse(contentTypes);\n\tchannelTextTags = JSON.parse(channelTextTags);\n\n\tconst text = `Oii!${channelTextTags.breakline}Eu sou a ${channelTextTags.open}Kora${channelTextTags.close}, assistente virtual da ${channelTextTags.open}Coca-Cola Brasil${channelTextTags.close}. 😊`;\n\tconst messageContent = {\n\t\t\"title\": \"\",\n\t\ttext,\n\t\t\"type\": \"image/jpeg\",\n\t\t\"uri\": \"https://storage.googleapis.com/kora-nlp-prod.appspot.com/koraavatar.jpeg\",\n\t\t\"aspectRatio\": \"1:1\"\n\t};\n\n\tif (userChannel == \"other\") {\n\t\treturn messageContent;\n\t}\n\n\treturn text;\n}",
             "inputVariables": [
               "contentTypes",
               "userChannel",
@@ -1906,7 +1906,7 @@
           "$invalid": false,
           "settings": {
             "function": "run",
-            "source": "function run(menuOptions, hasCupons, isQuizAnswered, userId, isAllSurveysAnswered, userChannel, tunnelOwner, isQuizAnsweredV2, isMagicAudiosActive,isActivePromoBBB23) {\n    menuOptions = JSON.parse(menuOptions);\n\n    if (userChannel == \"whatsapp\" && menuOptions.options.length < 10) {\n        menuOptions.options.push(        {\n            \"name\": \"Áudios Mágicos ✨\",\n            \"position\": -1,\n            \"valideOptions\": \"Magic audios ✨|Magic Áudios ✨ |Magic|Audios|Áudios Mágicos ✨|Áudios\",\n            \"service\": \"TempPromo2\",\n            \"sendMessage\": \"Oi\"\n        });\n    }\n\n    if (!isAllSurveysAnswered && (userChannel == \"whatsapp\" || userChannel == \"blipchat\" || tunnelOwner.includes(\"leao\"))\n        && menuOptions.options.length < 10) {\n        menuOptions.options.push({\n            \"name\": \"Ajude a Kora! 🥰\",\n            \"position\": 2,\n            \"valideOptions\": \"Ajude a Kora! 🥰|Ajude a Kora!|^Ajude$|^Kora$\",\n            \"service\": \"HelpKora\",\n            \"sendMessage\": \"Oi\"\n        });\n    }\n\n    if (userChannel == \"whatsapp\" && menuOptions.options.length < 10) {\n        menuOptions.options.push({\n            \"name\": \"Loja Coca-Cola 🛍️️\",\n            \"position\": 1,\n            \"valideOptions\": \"Loja Coca-Cola 🛍️|Loja Coca-Cola🛍️|Loja Coca-Cola|Loja\",\n            \"service\": \"Loja\",\n            \"sendMessage\": \"Oi\"\n        });\n    }\n\n    if (userChannel == \"whatsapp\" && menuOptions.options.length < 10 && isActivePromoBBB23 == \"true\") {\n        menuOptions.options.push({\n            \"name\": \"BBB 23 📺️\",\n            \"position\": -1,\n            \"valideOptions\": \"BBB 23 📺|BBB 23📺|BBB23|BBB 23\",\n            \"service\": \"TempPromo\",\n            \"sendMessage\": \"#KoraBBB23\"\n        });\n    }\n   \n    return menuOptions;\n}",
+            "source": "function run(menuOptions, hasCupons, isQuizAnswered, userId, isAllSurveysAnswered, userChannel, tunnelOwner, isQuizAnsweredV2, isMagicAudiosActive, isActivePromoBBB23) {\n    menuOptions = JSON.parse(menuOptions);\n\n    if (userChannel == \"whatsapp\" && menuOptions.options.length < 10) {\n        menuOptions.options.push(        {\n            \"name\": \"Áudios Mágicos ✨\",\n            \"position\": -1,\n            \"valideOptions\": \"Magic audios ✨|Magic Áudios ✨ |Magic|Audios|Áudios Mágicos ✨|Áudios\",\n            \"service\": \"TempPromo2\",\n            \"sendMessage\": \"Oi\"\n        });\n    }\n\n    if (!isAllSurveysAnswered && (userChannel == \"whatsapp\" || userChannel == \"blipchat\" || tunnelOwner.includes(\"leao\"))\n        && menuOptions.options.length < 10) {\n        menuOptions.options.push({\n            \"name\": \"Ajude a Kora! 🥰\",\n            \"position\": 2,\n            \"valideOptions\": \"Ajude a Kora! 🥰|Ajude a Kora!|^Ajude$|^Kora$\",\n            \"service\": \"HelpKora\",\n            \"sendMessage\": \"Oi\"\n        });\n    }\n\n    if (userChannel == \"whatsapp\" && menuOptions.options.length < 10) {\n        menuOptions.options.push({\n            \"name\": \"Loja Coca-Cola 🛍️️\",\n            \"position\": 1,\n            \"valideOptions\": \"Loja Coca-Cola 🛍️|Loja Coca-Cola🛍️|Loja Coca-Cola|Loja\",\n            \"service\": \"Loja\",\n            \"sendMessage\": \"Oi\"\n        });\n    }\n\n    if (userChannel == \"whatsapp\" && menuOptions.options.length < 10 && isActivePromoBBB23 == \"true\") {\n        menuOptions.options.push({\n            \"name\": \"BBB 23 📺️\",\n            \"position\": -1,\n            \"valideOptions\": \"BBB 23 📺|BBB 23📺|BBB23|BBB 23\",\n            \"service\": \"TempPromo\",\n            \"sendMessage\": \"#KoraBBB23\"\n        });\n    }\n   \n    return menuOptions;\n}",
             "inputVariables": [
               "resource.menuOptions",
               "hasCupons",
@@ -6861,7 +6861,7 @@
           "$invalid": false,
           "settings": {
             "function": "run",
-            "source": "function run(firstIntent, userChannel, resourceCouponBBB23str) {\n    let destiny = {\n        destinyBot: \"Main\",\n        sendMessage: \"Oi\"\n    }\n\n    const {isActive} = JSON.parse(resourceCouponBBB23str)\n\n    \n    if(firstIntent == \"#testekoraperfilcic\" && (userChannel == \"whatsapp\")){\n        destiny.destinyBot = \"WorkInCoca\";\n        destiny.sendMessage = firstIntent;\n\n    }\n\n    else if(firstIntent == \"#testeCommitment\"){\n        destiny.destinyBot = \"Opinion\"\n        destiny.sendMessage = firstIntent\n    }\n\n    else if(firstIntent == \"#IfoodAudiosMagicos\" || firstIntent == \"#AudiosMagicos\" || firstIntent == \"#CCAudiosMagicos\" || firstIntent == \"#PromoAudiosMagicos\"|| firstIntent == \"#AudiosMagicosKora\"){\n        destiny.destinyBot = \"TempPromo\"\n        destiny.sendMessage = \"#MagicAudios2022\"\n    }\n\n    else if(firstIntent == \"#KoraBBB23\" && isActive){\n        destiny.destinyBot = \"TempPromo\"\n        destiny.sendMessage = \"#KoraBBB23\"\n    }\n    \n    return destiny; \n}",
+            "source": "function run(firstIntent, userChannel, resourceCouponBBB23Str) {\n    const {isActive} = JSON.parse(resourceCouponBBB23str)\n    let destiny = {\n        destinyBot: \"Main\",\n        sendMessage: \"Oi\"\n    }\n    \n    if(firstIntent == \"#testekoraperfilcic\" && (userChannel == \"whatsapp\")){\n        destiny.destinyBot = \"WorkInCoca\";\n        destiny.sendMessage = firstIntent;\n\n    }\n\n    else if(firstIntent == \"#testeCommitment\"){\n        destiny.destinyBot = \"Opinion\"\n        destiny.sendMessage = firstIntent\n    }\n\n    else if(firstIntent == \"#IfoodAudiosMagicos\" || firstIntent == \"#AudiosMagicos\" || firstIntent == \"#CCAudiosMagicos\" || firstIntent == \"#PromoAudiosMagicos\"|| firstIntent == \"#AudiosMagicosKora\"){\n        destiny.destinyBot = \"TempPromo\"\n        destiny.sendMessage = \"#MagicAudios2022\"\n    }\n\n    else if(firstIntent == \"#KoraBBB23\" && isActive){\n        destiny.destinyBot = \"TempPromo\"\n        destiny.sendMessage = \"#KoraBBB23\"\n    }\n    \n    return destiny; \n}",
             "inputVariables": [
               "firstIntent",
               "userChannel",
@@ -7099,7 +7099,8 @@
             },
             "$invalid": false
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:2122"
         }
       ],
       "$conditionOutputs": [
@@ -7113,10 +7114,12 @@
               "source": "context",
               "comparison": "equals",
               "values": ["#MagicAudiosDateIsOver"],
-              "variable": "firstIntent"
+              "variable": "firstIntent",
+              "$$hashKey": "object:2184"
             }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:2147"
         },
         {
           "stateId": "d09884f5-55ce-4558-876a-98ca7da9ba1e",
@@ -7128,10 +7131,12 @@
               "source": "context",
               "comparison": "equals",
               "values": ["#MagicAudiosPromoIsOver"],
-              "variable": "firstIntent"
+              "variable": "firstIntent",
+              "$$hashKey": "object:2211"
             }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:2148"
         },
         {
           "typeOfStateId": "state",
@@ -7141,18 +7146,21 @@
               "source": "context",
               "comparison": "notEquals",
               "values": ["true"],
-              "variable": "contact.extras.updatedTermsAccepted"
+              "variable": "contact.extras.updatedTermsAccepted",
+              "$$hashKey": "object:2238"
             },
             {
               "source": "context",
               "comparison": "equals",
               "variable": "contact.extras.newTermsAccepted",
-              "values": ["true"]
+              "values": ["true"],
+              "$$hashKey": "object:2239"
             }
           ],
           "$invalid": false,
           "stateId": "0951d05d-72b2-42de-b842-d9c98d091a26",
-          "$connId": "con_413"
+          "$connId": "con_413",
+          "$$hashKey": "object:2149"
         },
         {
           "stateId": "2b9995a9-ebf0-40ba-8af1-41a51381b359",
@@ -7160,15 +7168,22 @@
           "$connId": "con_418",
           "$id": "dada97d8-f529-45ef-a6cf-c925d18d72b8",
           "conditions": [
-            { "source": "input", "comparison": "startsWith", "values": ["#"] },
+            {
+              "source": "input",
+              "comparison": "startsWith",
+              "values": ["#"],
+              "$$hashKey": "object:2285"
+            },
             {
               "source": "context",
               "comparison": "equals",
               "variable": "contact.extras.newTermsAccepted",
-              "values": ["true"]
+              "values": ["true"],
+              "$$hashKey": "object:2286"
             }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:2150"
         },
         {
           "stateId": "8890d892-438a-4502-af30-f9d5f0b8d1d6",
@@ -7180,16 +7195,19 @@
               "source": "context",
               "comparison": "equals",
               "values": ["true"],
-              "variable": "contact.extras.newTermsAccepted"
+              "variable": "contact.extras.newTermsAccepted",
+              "$$hashKey": "object:2328"
             },
             {
               "source": "context",
               "comparison": "exists",
               "values": [],
-              "variable": "userName"
+              "variable": "userName",
+              "$$hashKey": "object:2329"
             }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:2151"
         },
         {
           "stateId": "0bd5fbf6-056a-4b77-827b-e28789d82bf9",
@@ -7201,16 +7219,19 @@
               "source": "context",
               "comparison": "exists",
               "values": [],
-              "variable": "isAgeBigger18"
+              "variable": "isAgeBigger18",
+              "$$hashKey": "object:2373"
             },
             {
               "source": "context",
               "comparison": "equals",
               "variable": "contact.extras.newTermsAccepted",
-              "values": ["true"]
+              "values": ["true"],
+              "$$hashKey": "object:2374"
             }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:2152"
         },
         {
           "stateId": "327d0b10-399c-4bdd-9681-1080360cae59",
@@ -7218,9 +7239,15 @@
           "$connId": "con_433",
           "$id": "7b4111f5-4f85-470f-8bed-7d6874c27869",
           "conditions": [
-            { "source": "input", "comparison": "exists", "values": [] }
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": [],
+              "$$hashKey": "object:2418"
+            }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:2153"
         }
       ],
       "$enteringCustomActions": [
