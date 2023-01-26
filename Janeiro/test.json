@@ -84,7 +84,7 @@
       "id": "onboarding",
       "root": true,
       "$title": "Início",
-      "$position": { "top": "93px", "left": "641px" },
+      "$position": { "top": "114px", "left": "643px" },
       "$invalidContentActions": false,
       "$invalidOutputs": false,
       "$invalidCustomActions": false,
@@ -193,7 +193,7 @@
       "$tags": [],
       "id": "fallback",
       "$title": "Exceções",
-      "$position": { "top": "11.8182px", "left": "1298.36px" },
+      "$position": { "top": "130px", "left": "1122px" },
       "$invalidContentActions": false,
       "$invalidOutputs": false,
       "$invalidCustomActions": false,
@@ -218,7 +218,8 @@
             },
             "$invalid": false
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:8146"
         }
       ],
       "$conditionOutputs": [
@@ -228,9 +229,15 @@
           "$connId": "con_33",
           "$id": "9ba2b1b4-e009-4ad8-bcf0-eec0d1e3f7a0",
           "conditions": [
-            { "source": "input", "comparison": "exists", "values": [] }
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": [],
+              "$$hashKey": "object:8190"
+            }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:8171"
         }
       ],
       "$enteringCustomActions": [
@@ -272,7 +279,7 @@
           "$invalid": false,
           "settings": {
             "function": "run",
-            "source": "function run(userChannel) {\n\treturn getBoldTagsByChannel(userChannel)\n}\n\nfunction getBoldTagsByChannel(userChannel) {\n\tconst DEFAULT_TEXT_TAGS = {\n\t\t\"open\": \"\",\n\t\t\"close\": \"\",\n\t\t\"open_i\": \"\",\n\t\t\"close_i\": \"\",\n\t\t\"breakline\": \" \"\n\t};\n\tconst channelTextTags = {\n\t\t\"whatsapp\": {\n\t\t\t\"open\": \"*\",\n\t\t\t\"close\": \"*\",\n\t\t\t\"open_i\": \"_\",\n\t\t\t\"close_i\": \"_\",\n\t\t\t\"breakline\": \"\\n\"\n\t\t},\n\t\t\"blipchat\": {\n\t\t\t\"open\": \"<b>\",\n\t\t\t\"close\": \"</b>\",\n\t\t\t\"open_i\": \"<i>\",\n\t\t\t\"close_i\": \"</i>\",\n\t\t\t\"breakline\": \"\\n\"\n\t\t}\n\t}\n\n\treturn channelTextTags[userChannel] || DEFAULT_TEXT_TAGS;\n}",
+            "source": "function run(userChannel) {\n    return getBoldTagsByChannel(userChannel)\n}\n\nfunction getBoldTagsByChannel(userChannel) {\t\n    const DEFAULT_TEXT_TAGS = {\n\t\t\"open\": \"\",\n\t\t\"close\": \"\",\n\t\t\"open_i\": \"\",\n\t\t\"close_i\": \"\",\n        \"breakline\": \" \"\n    };\n\tconst channelTextTags = {\n\t\t\"whatsapp\":{\n            \"open\": \"*\",\n        \t\"close\": \"*\",\n        \t\"open_i\": \"_\",\n        \t\"close_i\": \"_\",\n        \t\"breakline\": \"\\n\"\n        },\n\t\t\"blipchat\":  {      \n\t\t\t\"open\": \"<b>\",\n\t\t\t\"close\": \"</b>\",\n\t\t\t\"open_i\": \"<i>\",\n\t\t\t\"close_i\": \"</i>\",\n            \"breakline\": \"\\n\"\n\t\t}\n\t}\n\t\n    return channelTextTags[userChannel] || DEFAULT_TEXT_TAGS;\n}",
             "inputVariables": ["userChannel"],
             "outputVariable": "channelTextTags",
             "LocalTimeZoneEnabled": false
@@ -306,13 +313,15 @@
               "source": "context",
               "comparison": "notExists",
               "values": [],
-              "variable": "phone"
+              "variable": "phone",
+              "$$hashKey": "object:14107"
             },
             {
               "source": "context",
               "comparison": "equals",
               "variable": "userChannel",
-              "values": ["whatsapp"]
+              "values": ["whatsapp"],
+              "$$hashKey": "object:14108"
             }
           ]
         }
@@ -539,7 +548,7 @@
           "$invalid": false,
           "settings": {
             "function": "run",
-            "source": "function run(contentTypes, userChannel, channelTextTags) {\n\tcontentTypes = JSON.parse(contentTypes);\n\tchannelTextTags = JSON.parse(channelTextTags);\n\n\tconst text = `Oii!${channelTextTags.breakline}Eu sou a ${channelTextTags.open}Kora${channelTextTags.close}, assistente virtual da ${channelTextTags.open}Coca-Cola Brasil${channelTextTags.close}. 😊`;\n\tconst messageContent = {\n\t\t\"title\": \"\",\n\t\ttext,\n\t\t\"type\": \"image/jpeg\",\n\t\t\"uri\": \"https://storage.googleapis.com/kora-nlp-prod.appspot.com/koraavatar.jpeg\",\n\t\t\"aspectRatio\": \"1:1\"\n\t};\n\n\tif (userChannel == \"other\") {\n\t\treturn messageContent;\n\t}\n\n\treturn text;\n}",
+            "source": "function run(contentTypes, userChannel, channelTextTags) {\n    contentTypes = JSON.parse(contentTypes);\n\tchannelTextTags = JSON.parse(channelTextTags);\n\n    const text = `Oii!${channelTextTags.breakline}Eu sou a ${channelTextTags.open}Kora${channelTextTags.close}, assistente virtual da ${channelTextTags.open}Coca-Cola Brasil${channelTextTags.close}. 😊`;\n    const messageContent = {\n\t\t\"title\": \"\",\n\t\ttext,\n\t\t\"type\": \"image/jpeg\",\n\t\t\"uri\": \"https://storage.googleapis.com/kora-nlp-prod.appspot.com/koraavatar.jpeg\",\n\t\t\"aspectRatio\": \"1:1\"\n    };\n\n\tif( userChannel == \"other\"){\n\t\treturn messageContent;\n\t}\n\n\treturn text;\n}",
             "inputVariables": [
               "contentTypes",
               "userChannel",
@@ -567,7 +576,7 @@
       "id": "327d0b10-399c-4bdd-9681-1080360cae59",
       "root": false,
       "$title": "[PCR] OPTIN - Generate New Users Message",
-      "$position": { "top": "383px", "left": "647px" },
+      "$position": { "top": "367.889px", "left": "676.111px" },
       "$invalidContentActions": false,
       "$invalidOutputs": false,
       "$invalidCustomActions": false,
@@ -1479,7 +1488,7 @@
       "id": "fc287a3e-a4ed-4a57-86c8-f78f02af215b",
       "root": false,
       "$title": "[PCR] Verify if UserName is Valid",
-      "$position": { "top": "1577.41px", "left": "1025.04px" },
+      "$position": { "top": "1687px", "left": "1036px" },
       "$invalidContentActions": false,
       "$invalidOutputs": false,
       "$invalidCustomActions": false,
@@ -1884,7 +1893,7 @@
           "conditions": []
         },
         {
-          "$id": "ce3693bd-9513-4456-9211-6f1564ed5999",
+          "$id": "d49b1a70-5280-43bc-a8b8-553bf3539a81",
           "$typeOfContent": "",
           "type": "ExecuteScript",
           "$title": "[SCT] Get Coupon is Active",
@@ -1906,7 +1915,7 @@
           "$invalid": false,
           "settings": {
             "function": "run",
-            "source": "function run(menuOptions, hasCupons, isQuizAnswered, userId, isAllSurveysAnswered, userChannel, tunnelOwner, isQuizAnsweredV2, isMagicAudiosActive, isActivePromoBBB23) {\n    menuOptions = JSON.parse(menuOptions);\n\n    if (userChannel == \"whatsapp\" && menuOptions.options.length < 10) {\n        menuOptions.options.push(        {\n            \"name\": \"Áudios Mágicos ✨\",\n            \"position\": -1,\n            \"valideOptions\": \"Magic audios ✨|Magic Áudios ✨ |Magic|Audios|Áudios Mágicos ✨|Áudios\",\n            \"service\": \"TempPromo2\",\n            \"sendMessage\": \"Oi\"\n        });\n    }\n\n    if (!isAllSurveysAnswered && (userChannel == \"whatsapp\" || userChannel == \"blipchat\" || tunnelOwner.includes(\"leao\"))\n        && menuOptions.options.length < 10) {\n        menuOptions.options.push({\n            \"name\": \"Ajude a Kora! 🥰\",\n            \"position\": 2,\n            \"valideOptions\": \"Ajude a Kora! 🥰|Ajude a Kora!|^Ajude$|^Kora$\",\n            \"service\": \"HelpKora\",\n            \"sendMessage\": \"Oi\"\n        });\n    }\n\n    if (userChannel == \"whatsapp\" && menuOptions.options.length < 10) {\n        menuOptions.options.push({\n            \"name\": \"Loja Coca-Cola 🛍️️\",\n            \"position\": 1,\n            \"valideOptions\": \"Loja Coca-Cola 🛍️|Loja Coca-Cola🛍️|Loja Coca-Cola|Loja\",\n            \"service\": \"Loja\",\n            \"sendMessage\": \"Oi\"\n        });\n    }\n\n    if (userChannel == \"whatsapp\" && menuOptions.options.length < 10 && isActivePromoBBB23 == \"true\") {\n        menuOptions.options.push({\n            \"name\": \"BBB 23 📺️\",\n            \"position\": -1,\n            \"valideOptions\": \"BBB 23 📺|BBB 23📺|BBB23|BBB 23\",\n            \"service\": \"TempPromo\",\n            \"sendMessage\": \"#KoraBBB23\"\n        });\n    }\n   \n    return menuOptions;\n}",
+            "source": "function run(menuOptions, hasCupons, isQuizAnswered, userId, isAllSurveysAnswered, userChannel, tunnelOwner, isQuizAnsweredV2, isMagicAudiosActive, isActivePromoBBB23) {\n    menuOptions = JSON.parse(menuOptions);\n\n    if (userChannel == \"whatsapp\" && menuOptions.options.length < 10) {\n        menuOptions.options.push(        {\n            \"name\": \"Áudios Mágicos ✨\",\n            \"position\": -1,\n            \"valideOptions\": \"Magic audios ✨|Magic Áudios ✨ |Magic|Audios|Áudios Mágicos ✨|Áudios\",\n            \"service\": \"TempPromo2\",\n            \"sendMessage\": \"Oi\"\n        });\n    }\n\n    if ((!isQuizAnswered || !isQuizAnsweredV2) && (hasCupons === 'true' || hasCupons === true) && menuOptions && menuOptions.options\n        && menuOptions.options.length < 10) {\n        menuOptions.options.push({\n            \"name\": \"Quiz Copa do Mundo 🏆\",\n            \"position\": 1,\n            \"valideOptions\": \"Quiz Copa do Mundo 🏆|Quiz Copa do Mundo|Quiz|Copa do Mundo\",\n            \"service\": \"Main\",\n            \"sendMessage\": \"Oi\"\n        });\n    }\n\n    if (!isAllSurveysAnswered && (userChannel == \"whatsapp\" || userChannel == \"blipchat\" || tunnelOwner.includes(\"leao\"))\n        && menuOptions.options.length < 10) {\n        menuOptions.options.push({\n            \"name\": \"Ajude a Kora! 🥰\",\n            \"position\": 2,\n            \"valideOptions\": \"Ajude a Kora! 🥰|Ajude a Kora!|Ajude|Kora\",\n            \"service\": \"HelpKora\",\n            \"sendMessage\": \"Oi\"\n        });\n    }\n\n    if (userChannel == \"whatsapp\" && menuOptions.options.length < 10) {\n        menuOptions.options.push({\n            \"name\": \"Loja Coca-Cola 🛍️️\",\n            \"position\": 1,\n            \"valideOptions\": \"Loja Coca-Cola 🛍️|Loja Coca-Cola🛍️|Loja Coca-Cola|Loja\",\n            \"service\": \"Loja\",\n            \"sendMessage\": \"Oi\"\n        });\n    }\n\n    if (userChannel == \"whatsapp\" && menuOptions.options.length < 10 && isActivePromoBBB23 == \"true\") {\n        menuOptions.options.push({\n            \"name\": \"BBB 23 📺️\",\n            \"position\": -1,\n            \"valideOptions\": \"BBB 23 📺|BBB 23📺|BBB23|BBB 23\",\n            \"service\": \"TempPromo\",\n            \"sendMessage\": \"#KoraBBB23\"\n        });\n    }\n    \n    return menuOptions;\n}",
             "inputVariables": [
               "resource.menuOptions",
               "hasCupons",
@@ -2015,7 +2024,7 @@
       "id": "8890d892-438a-4502-af30-f9d5f0b8d1d6",
       "root": false,
       "$title": "[PCR] MENU - Generate Main Menu",
-      "$position": { "top": "1748px", "left": "1610.62px" },
+      "$position": { "top": "1747.56px", "left": "1613.44px" },
       "$invalidContentActions": false,
       "$invalidOutputs": false,
       "$invalidCustomActions": false,
@@ -2302,7 +2311,8 @@
               "position": "left"
             }
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:11322"
         },
         {
           "action": {
@@ -2315,7 +2325,8 @@
               "rawContent": "{{menu@content}}"
             }
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:11323"
         },
         {
           "input": {
@@ -2334,7 +2345,8 @@
             },
             "$invalid": false
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:11324"
         }
       ],
       "$conditionOutputs": [
@@ -2344,9 +2356,15 @@
           "$connId": "con_143",
           "$id": "e53d3253-1d09-4084-b5e7-7298d9a643fd",
           "conditions": [
-            { "source": "input", "comparison": "exists", "values": [] }
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": [],
+              "$$hashKey": "object:11377"
+            }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:11358"
         }
       ],
       "$enteringCustomActions": [],
@@ -2368,7 +2386,7 @@
       "id": "3748f0ba-b79e-4be1-a1f1-0c9db6ea1549",
       "root": false,
       "$title": "[MSG] MENU - Show Menu",
-      "$position": { "top": "1929px", "left": "1613px" },
+      "$position": { "top": "1964.23px", "left": "1604px" },
       "$invalidContentActions": false,
       "$invalidOutputs": false,
       "$invalidCustomActions": false,
@@ -2803,7 +2821,7 @@
       "id": "e50f2217-a96c-4f91-b77d-35f60ef9dfac",
       "root": false,
       "$title": "[IN] OPTIN - Email",
-      "$position": { "top": "1916.27px", "left": "923.273px" },
+      "$position": { "top": "1909.3px", "left": "881px" },
       "$invalidContentActions": false,
       "$invalidOutputs": false,
       "$invalidCustomActions": false,
@@ -3731,7 +3749,7 @@
       "id": "d7a5a0c5-98be-4f08-901d-bb356b2ba00a",
       "root": false,
       "$title": "[MSG] OPTIN - Show Thanks Message",
-      "$position": { "top": "1660px", "left": "1341px" },
+      "$position": { "top": "1658.78px", "left": "1339.56px" },
       "$invalidContentActions": false,
       "$invalidOutputs": false,
       "$invalidCustomActions": false,
@@ -3756,7 +3774,8 @@
             },
             "$invalid": false
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:11744"
         }
       ],
       "$conditionOutputs": [
@@ -3770,10 +3789,12 @@
               "source": "context",
               "comparison": "equals",
               "values": ["Quiz Copa do Mundo 🏆"],
-              "variable": "userAction@value"
+              "variable": "userAction@value",
+              "$$hashKey": "object:11796"
             }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:11771"
         },
         {
           "stateId": "7a395591-5303-4eaa-88a2-f0e2dae3c698",
@@ -3785,10 +3806,12 @@
               "source": "context",
               "comparison": "equals",
               "values": ["Áudios Mágicos ✨"],
-              "variable": "userAction@value"
+              "variable": "userAction@value",
+              "$$hashKey": "object:11823"
             }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:11772"
         },
         {
           "stateId": "7a395591-5303-4eaa-88a2-f0e2dae3c698",
@@ -3800,10 +3823,12 @@
               "source": "context",
               "comparison": "notEquals",
               "values": ["Input Inesperado"],
-              "variable": "userAction@value"
+              "variable": "userAction@value",
+              "$$hashKey": "object:11850"
             }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:11773"
         }
       ],
       "$enteringCustomActions": [],
@@ -3908,7 +3933,8 @@
             },
             "$invalid": false
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:10370"
         }
       ],
       "$conditionOutputs": [],
@@ -6837,7 +6863,8 @@
             },
             "$invalid": false
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:12719"
         }
       ],
       "$conditionOutputs": [
@@ -6847,9 +6874,15 @@
           "$connId": "con_378",
           "$id": "fd0f2cb0-3a65-463a-9bbf-525219975d5f",
           "conditions": [
-            { "source": "input", "comparison": "exists", "values": [] }
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": [],
+              "$$hashKey": "object:12763"
+            }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:12744"
         }
       ],
       "$enteringCustomActions": [
@@ -6861,7 +6894,7 @@
           "$invalid": false,
           "settings": {
             "function": "run",
-            "source": "function run(firstIntent, userChannel, resourceCouponBBB23Str) {\n    const {isActive} = JSON.parse(resourceCouponBBB23str)\n    let destiny = {\n        destinyBot: \"Main\",\n        sendMessage: \"Oi\"\n    }\n    \n    if(firstIntent == \"#testekoraperfilcic\" && (userChannel == \"whatsapp\")){\n        destiny.destinyBot = \"WorkInCoca\";\n        destiny.sendMessage = firstIntent;\n\n    }\n\n    else if(firstIntent == \"#testeCommitment\"){\n        destiny.destinyBot = \"Opinion\"\n        destiny.sendMessage = firstIntent\n    }\n\n    else if(firstIntent == \"#IfoodAudiosMagicos\" || firstIntent == \"#AudiosMagicos\" || firstIntent == \"#CCAudiosMagicos\" || firstIntent == \"#PromoAudiosMagicos\"|| firstIntent == \"#AudiosMagicosKora\"){\n        destiny.destinyBot = \"TempPromo\"\n        destiny.sendMessage = \"#MagicAudios2022\"\n    }\n\n    else if(firstIntent == \"#KoraBBB23\" && isActive){\n        destiny.destinyBot = \"TempPromo\"\n        destiny.sendMessage = \"#KoraBBB23\"\n    }\n    \n    return destiny; \n}",
+            "source": "function run(firstIntent, userChannel, resourceCouponBBB23Str) {\n    const {isActive} = JSON.parse(resourceCouponBBB23str)\n    let destiny = {\n        destinyBot: \"Main\",\n        sendMessage: \"Oi\"\n    }\n    \n    if(firstIntent == \"#testekoraperfilcic\" && (userChannel == \"whatsapp\")){\n        destiny.destinyBot = \"WorkInCoca\";\n        destiny.sendMessage = firstIntent;\n\n    }\n\n    else if(firstIntent == \"#testeCommitment\"){\n        destiny.destinyBot = \"Opinion\"\n        destiny.sendMessage = firstIntent\n    }\n\n    else if(firstIntent == \"#IfoodAudiosMagicos\" || firstIntent == \"#AudiosMagicos\" || firstIntent == \"#CCAudiosMagicos\" || firstIntent == \"#PromoAudiosMagicos\"|| firstIntent == \"#AudiosMagicosKora\"){\n        destiny.destinyBot = \"TempPromo\"\n        destiny.sendMessage = \"#MagicAudios2022\"\n    }\n        \n    else if(firstIntent == \"#KoraBBB23\" && isActive){\n        destiny.destinyBot = \"TempPromo\"\n        destiny.sendMessage = \"#KoraBBB23\"\n    }\n    \n    return destiny; \n}",
             "inputVariables": [
               "firstIntent",
               "userChannel",
@@ -7100,7 +7133,7 @@
             "$invalid": false
           },
           "$invalid": false,
-          "$$hashKey": "object:2122"
+          "$$hashKey": "object:7284"
         }
       ],
       "$conditionOutputs": [
@@ -7115,11 +7148,11 @@
               "comparison": "equals",
               "values": ["#MagicAudiosDateIsOver"],
               "variable": "firstIntent",
-              "$$hashKey": "object:2184"
+              "$$hashKey": "object:7346"
             }
           ],
           "$invalid": false,
-          "$$hashKey": "object:2147"
+          "$$hashKey": "object:7309"
         },
         {
           "stateId": "d09884f5-55ce-4558-876a-98ca7da9ba1e",
@@ -7132,11 +7165,11 @@
               "comparison": "equals",
               "values": ["#MagicAudiosPromoIsOver"],
               "variable": "firstIntent",
-              "$$hashKey": "object:2211"
+              "$$hashKey": "object:7373"
             }
           ],
           "$invalid": false,
-          "$$hashKey": "object:2148"
+          "$$hashKey": "object:7310"
         },
         {
           "typeOfStateId": "state",
@@ -7147,20 +7180,20 @@
               "comparison": "notEquals",
               "values": ["true"],
               "variable": "contact.extras.updatedTermsAccepted",
-              "$$hashKey": "object:2238"
+              "$$hashKey": "object:7400"
             },
             {
               "source": "context",
               "comparison": "equals",
               "variable": "contact.extras.newTermsAccepted",
               "values": ["true"],
-              "$$hashKey": "object:2239"
+              "$$hashKey": "object:7401"
             }
           ],
           "$invalid": false,
           "stateId": "0951d05d-72b2-42de-b842-d9c98d091a26",
           "$connId": "con_413",
-          "$$hashKey": "object:2149"
+          "$$hashKey": "object:7311"
         },
         {
           "stateId": "2b9995a9-ebf0-40ba-8af1-41a51381b359",
@@ -7172,18 +7205,18 @@
               "source": "input",
               "comparison": "startsWith",
               "values": ["#"],
-              "$$hashKey": "object:2285"
+              "$$hashKey": "object:7447"
             },
             {
               "source": "context",
               "comparison": "equals",
               "variable": "contact.extras.newTermsAccepted",
               "values": ["true"],
-              "$$hashKey": "object:2286"
+              "$$hashKey": "object:7448"
             }
           ],
           "$invalid": false,
-          "$$hashKey": "object:2150"
+          "$$hashKey": "object:7312"
         },
         {
           "stateId": "8890d892-438a-4502-af30-f9d5f0b8d1d6",
@@ -7196,18 +7229,18 @@
               "comparison": "equals",
               "values": ["true"],
               "variable": "contact.extras.newTermsAccepted",
-              "$$hashKey": "object:2328"
+              "$$hashKey": "object:7490"
             },
             {
               "source": "context",
               "comparison": "exists",
               "values": [],
               "variable": "userName",
-              "$$hashKey": "object:2329"
+              "$$hashKey": "object:7491"
             }
           ],
           "$invalid": false,
-          "$$hashKey": "object:2151"
+          "$$hashKey": "object:7313"
         },
         {
           "stateId": "0bd5fbf6-056a-4b77-827b-e28789d82bf9",
@@ -7220,18 +7253,18 @@
               "comparison": "exists",
               "values": [],
               "variable": "isAgeBigger18",
-              "$$hashKey": "object:2373"
+              "$$hashKey": "object:7535"
             },
             {
               "source": "context",
               "comparison": "equals",
               "variable": "contact.extras.newTermsAccepted",
               "values": ["true"],
-              "$$hashKey": "object:2374"
+              "$$hashKey": "object:7536"
             }
           ],
           "$invalid": false,
-          "$$hashKey": "object:2152"
+          "$$hashKey": "object:7314"
         },
         {
           "stateId": "327d0b10-399c-4bdd-9681-1080360cae59",
@@ -7243,11 +7276,11 @@
               "source": "input",
               "comparison": "exists",
               "values": [],
-              "$$hashKey": "object:2418"
+              "$$hashKey": "object:7580"
             }
           ],
           "$invalid": false,
-          "$$hashKey": "object:2153"
+          "$$hashKey": "object:7315"
         }
       ],
       "$enteringCustomActions": [
@@ -7359,7 +7392,7 @@
       "id": "5d2bca95-54d9-4285-a2ef-dcd21faf7b14",
       "root": false,
       "$title": "[PCR] CONTACT - Set Contact Information",
-      "$position": { "top": "335px", "left": "375.02px" },
+      "$position": { "top": "334.622px", "left": "374px" },
       "$invalidContentActions": false,
       "$invalidOutputs": false,
       "$invalidCustomActions": false,
@@ -7385,7 +7418,8 @@
             },
             "$invalid": false
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:6870"
         }
       ],
       "$conditionOutputs": [
@@ -7394,10 +7428,16 @@
           "$connId": "con_438",
           "$id": "39cfa137-5b7c-48e7-808a-c3d786154ab6",
           "conditions": [
-            { "source": "input", "comparison": "exists", "values": [] }
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": [],
+              "$$hashKey": "object:6914"
+            }
           ],
           "$invalid": false,
-          "stateId": "c201f004-5af8-4637-8a57-f223baec5d63"
+          "stateId": "c201f004-5af8-4637-8a57-f223baec5d63",
+          "$$hashKey": "object:6895"
         }
       ],
       "$enteringCustomActions": [
@@ -7451,7 +7491,7 @@
       "id": "451c61a6-8dd7-43ab-ac0c-1c99df62e231",
       "root": false,
       "$title": "[PCR] CONTACT - Set Contact Information Exception",
-      "$position": { "top": "79.7273px", "left": "1010.73px" },
+      "$position": { "top": "227px", "left": "958px" },
       "$invalidContentActions": false,
       "$invalidOutputs": false,
       "$invalidCustomActions": false,
@@ -7481,7 +7521,8 @@
               "position": "left"
             }
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:16476"
         },
         {
           "action": {
@@ -7505,7 +7546,8 @@
               "position": "left"
             }
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:16477"
         },
         {
           "input": {
@@ -7524,7 +7566,8 @@
             },
             "$invalid": false
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:16478"
         }
       ],
       "$conditionOutputs": [
@@ -7534,9 +7577,15 @@
           "$connId": "con_443",
           "$id": "f904f345-40bf-46b4-ba33-c8e3b4c5ff2f",
           "conditions": [
-            { "source": "input", "comparison": "exists", "values": [] }
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": [],
+              "$$hashKey": "object:16532"
+            }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:16513"
         }
       ],
       "$enteringCustomActions": [
@@ -7634,7 +7683,8 @@
               "position": "left"
             }
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:10807"
         },
         {
           "action": {
@@ -7664,7 +7714,8 @@
               "position": "left"
             }
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:10808"
         },
         {
           "action": {
@@ -7688,7 +7739,8 @@
               "position": "left"
             }
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:10809"
         },
         {
           "action": {
@@ -7701,7 +7753,8 @@
               "rawContent": "{{messageContent@content}}"
             }
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:10810"
         },
         {
           "input": {
@@ -7720,7 +7773,8 @@
             },
             "$invalid": false
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:10811"
         }
       ],
       "$conditionOutputs": [
@@ -7734,10 +7788,12 @@
               "source": "context",
               "comparison": "equals",
               "values": ["Participar"],
-              "variable": "userAction@value"
+              "variable": "userAction@value",
+              "$$hashKey": "object:10877"
             }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:10855"
         },
         {
           "stateId": "3748f0ba-b79e-4be1-a1f1-0c9db6ea1549",
@@ -7745,9 +7801,15 @@
           "$connId": "con_453",
           "$id": "942801b6-1b5a-4d7f-9a64-3c8d27e439e5",
           "conditions": [
-            { "source": "input", "comparison": "exists", "values": [] }
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": [],
+              "$$hashKey": "object:10904"
+            }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:10856"
         }
       ],
       "$enteringCustomActions": [
@@ -7814,7 +7876,8 @@
             },
             "$invalid": false
           },
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:12303"
         }
       ],
       "$conditionOutputs": [
@@ -7824,9 +7887,15 @@
           "$connId": "con_458",
           "$id": "05ede3cc-129e-4ae2-9784-d47a8ce56f77",
           "conditions": [
-            { "source": "input", "comparison": "exists", "values": [] }
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": [],
+              "$$hashKey": "object:12347"
+            }
           ],
-          "$invalid": false
+          "$invalid": false,
+          "$$hashKey": "object:12328"
         }
       ],
       "$enteringCustomActions": [
@@ -8343,7 +8412,7 @@
       "id": "0951d05d-72b2-42de-b842-d9c98d091a26",
       "root": false,
       "$title": "OPTIN - New terms acceptance",
-      "$position": { "top": "316px", "left": "4323.33px" },
+      "$position": { "top": "316px", "left": "4325px" },
       "$invalidContentActions": false,
       "$invalidOutputs": false,
       "$invalidCustomActions": false,
@@ -8628,7 +8697,7 @@
       "id": "9a1ed2c3-830e-42c9-a187-83215a469830",
       "root": false,
       "$title": "OPTIN - Finish conversation",
-      "$position": { "top": "469.333px", "left": "4739.33px" },
+      "$position": { "top": "466px", "left": "4731px" },
       "$invalidContentActions": false,
       "$invalidOutputs": false,
       "$invalidCustomActions": false,
@@ -8803,7 +8872,7 @@
       "id": "34649fdb-80fb-4ede-b6f3-5815f2b484b9",
       "root": false,
       "$title": "[PCR] MAGIC - Generate Destiny TempPromo Anuncio",
-      "$position": { "top": "25.5455px", "left": "1599.27px" },
+      "$position": { "top": "151px", "left": "1412px" },
       "$invalidContentActions": false,
       "$invalidOutputs": false,
       "$invalidCustomActions": false,
